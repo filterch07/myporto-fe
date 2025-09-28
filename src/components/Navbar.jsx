@@ -17,7 +17,7 @@ const Navbar = () => {
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto px-4">
         <Link to="hero" smooth={true} duration={500}>
           <h1 className="text-white text-[18px] font-bold cursor-pointer flex">
-            Your Name&nbsp;
+            Jhony Samosir&nbsp;
             <span className="sm:block hidden">| Portfolio</span>
           </h1>
         </Link>
