@@ -22,19 +22,20 @@ const About = () => {
             className="space-y-6 text-secondary"
           >
             <p className="text-lg">
-              I'm a passionate web developer with experience in creating responsive
-              and dynamic web applications. My journey in web development started
-              with curiosity and has grown into expertise.
+              I am a web developer who enjoys creating responsive and dynamic web applications. 
+              I have strong backend skills with C#, Java, PHP, Python, SQL, 
+              as well as frontend expertise with React.js and Tailwind CSS.
             </p>
             <p className="text-lg">
-              I specialize in modern web technologies and frameworks, always
-              striving to write clean, efficient, and maintainable code. I enjoy
-              solving complex problems and learning new technologies.
+              I always strive to write clean and efficient code, 
+              and I enjoy learning new technologies and solving problems. 
+              In my free time, I like exploring tech trends and sharing knowledge 
+              with the community.
             </p>
             <p className="text-lg">
-              When I'm not coding, you can find me exploring new technologies,
-              contributing to open-source projects, or sharing knowledge with the
-              developer community.
+              I am also experienced with development tools such as Git, GitHub, 
+              GitLab CI/CD, VS Code, and Visual Studio to support a structured 
+              and collaborative workflow.
             </p>
           </motion.div>
 
@@ -73,7 +74,7 @@ const About = () => {
                       <span>Python (Django / FastAPI)</span>
                     </motion.li>
                     <motion.li whileHover={{ x: 5 }} className="flex items-center space-x-3 hover:text-white transition-colors">
-                      <span>SQL & MongoDB</span>
+                      <span>SQL (SQL Server, PostgreSQL)</span>
                     </motion.li>
                     <motion.li whileHover={{ x: 5 }} className="flex items-center space-x-3 hover:text-white transition-colors">
                       <span>Microservices & APIs</span>
