@@ -5,14 +5,28 @@ const About = () => {
   return (
     <section id="about" className="min-h-screen flex items-center bg-gradient-to-b from-[#0a0a0a] to-[#050816]">
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: true }}
         className="max-w-7xl mx-auto px-4 py-20"
       >
-        <h2 className="text-4xl font-bold text-center mb-16 text-white">
-          About <span className="text-[#915EFF]">Me</span>
-        </h2>
+        <motion.h2 
+          className="text-4xl font-bold text-center mb-16 text-white relative"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          About <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#915EFF] to-[#6366f1] animate-gradient-x">Me</span>
+          <motion.div 
+            className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-[#915EFF] to-[#6366f1]"
+            initial={{ width: 0, opacity: 0 }}
+            whileInView={{ width: 80, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          />
+        </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <motion.div

@@ -26,25 +26,46 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen flex items-center bg-primary">
+    <section id="contact" className="min-h-screen flex items-center relative bg-gradient-to-b from-primary via-[#0a0a0a] to-primary overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_var(--tw-gradient-stops))] from-[#915EFF]/20 via-transparent to-transparent opacity-50"></div>
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-        className="max-w-7xl mx-auto px-4 py-20 xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden bg-gradient-to-b from-[#050816] to-[#0a0a0a]"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+        className="relative z-10 max-w-7xl mx-auto px-4 py-20 xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden"
       >
         <motion.div
           initial={{ x: -200, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 1.2 }}
-          className="flex-[0.75] bg-tertiary p-8 rounded-2xl"
+          className="flex-[0.75] bg-tertiary/30 backdrop-blur-sm p-8 rounded-2xl border border-[#915EFF]/20 hover:border-[#915EFF]/40 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#915EFF]/20"
         >
-          <p className="text-secondary font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[40px]">
+          <motion.p 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-secondary font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[40px]"
+          >
             Get in touch
-          </p>
-          <h3 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">
+          </motion.p>
+          <motion.h3 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] relative inline-block"
+          >
             Contact.
-          </h3>
+            <motion.div 
+              className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#915EFF] to-[#6366f1]"
+              initial={{ width: 0, opacity: 0 }}
+              whileInView={{ width: '100%', opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+            />
+          </motion.h3>
 
           <form
             ref={formRef}

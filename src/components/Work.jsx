@@ -1,16 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 const Work = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-      mirror: true,
-    });
-  }, []);
+
 
   const projects = [
     {
@@ -37,16 +29,31 @@ const Work = () => {
   ];
 
   return (
-    <section id="work" className="min-h-screen py-20 bg-primary">
+    <section id="work" className="relative min-h-screen py-20 bg-gradient-to-b from-primary via-[#0a0a0a] to-primary overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#915EFF]/10 via-transparent to-transparent opacity-50"></div>
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-        className="max-w-7xl mx-auto px-4"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+        className="relative z-10 max-w-7xl mx-auto px-4"
       >
-        <h2 className="text-4xl font-bold text-center mb-16 text-white">
-          My <span className="text-[#915EFF]">Work</span>
-        </h2>
+        <motion.h2 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-4xl font-bold text-center mb-16 text-white relative"
+        >
+          My <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#915EFF] to-[#6366f1] animate-gradient-x">Work</span>
+          <motion.div 
+            className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-[#915EFF] to-[#6366f1]"
+            initial={{ width: 0, opacity: 0 }}
+            whileInView={{ width: 80, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          />
+        </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
@@ -54,8 +61,13 @@ const Work = () => {
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="group bg-tertiary rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.2,
+                ease: "easeOut"
+              }}
+              viewport={{ once: true }}
+              className="group bg-tertiary/30 backdrop-blur-sm rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-[#915EFF]/20 transition-all duration-500 transform hover:-translate-y-2 border border-[#915EFF]/10 hover:border-[#915EFF]/30"
             >
               <div className="relative h-[200px] bg-gradient-to-r from-[#1a1a1a] to-[#2a2a2a]">
                 <div className="absolute inset-0 bg-black opacity-50 group-hover:opacity-30 transition-opacity"></div>
