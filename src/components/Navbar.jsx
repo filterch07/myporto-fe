@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 const Navbar = () => {
   const [active, setActive] = useState('');
   const [toggle, setToggle] = useState(false);
-  const [debug, setDebug] = useState(true);
-  const [debugInfo, setDebugInfo] = useState({ lastClicked: null, top: null, navHeight: null });
 
   const navLinks = [
     { id: 'about', title: 'About' },
@@ -14,33 +12,12 @@ const Navbar = () => {
   ];
 
   const scrollToSection = (id) => {
-    console.debug('[Navbar] scrollToSection called for:', id);
     const el = document.getElementById(id);
-    if (!el) {
-      console.warn(`[Navbar] No element found with id=${id}`);
-      setDebugInfo({ lastClicked: id, top: null, navHeight: null });
-      return;
-    }
-    try {
-      // Try scrollIntoView first — this will work with nested/scrollable containers
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      console.debug('[Navbar] Used scrollIntoView for', id);
-    } catch (e) {
-      console.debug('[Navbar] scrollIntoView failed, falling back to window.scrollTo', e);
-      const nav = document.querySelector('nav');
-      const navHeight = nav ? nav.offsetHeight : 80;
-      const top = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-    // Also always try an offset-aware window scroll to account for fixed header
+    if (!el) return;
     const nav = document.querySelector('nav');
     const navHeight = nav ? nav.offsetHeight : 80;
     const top = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
-    setDebugInfo({ lastClicked: id, top, navHeight });
-    window.setTimeout(() => {
-      window.scrollTo({ top, behavior: 'smooth' });
-      console.debug('[Navbar] window.scrollTo applied for', id, 'top=', top);
-    }, 50);
+    window.scrollTo({ top, behavior: 'smooth' });
   };
 
   return (
@@ -115,23 +92,7 @@ const Navbar = () => {
           </motion.div>
         </div>
       </div>
-      {/* Debug overlay - temporary */}
-      {debug && (
-        <div className="fixed right-4 bottom-4 z-50 bg-black/60 text-white p-3 rounded-lg text-sm w-64">
-          <div className="flex justify-between items-center mb-2">
-            <strong>Navbar Debug</strong>
-            <button
-              className="text-xs underline"
-              onClick={() => setDebug(false)}
-            >
-              hide
-            </button>
-          </div>
-          <div>Last: <span className="font-mono">{debugInfo.lastClicked ?? '—'}</span></div>
-          <div>Top: <span className="font-mono">{debugInfo.top ?? '—'}</span></div>
-          <div>Nav H: <span className="font-mono">{debugInfo.navHeight ?? '—'}</span></div>
-        </div>
-      )}
+      {/* debug removed */}
     </nav>
   );
 };
