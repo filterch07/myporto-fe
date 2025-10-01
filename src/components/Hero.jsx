@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <section className="relative w-full h-screen mx-auto">
-      <div className="absolute inset-0 top-[120px] max-w-7xl mx-auto flex flex-row items-start gap-5 px-4">
+    <section id="hero" className="relative w-full h-screen mx-auto">
+      <div className="max-w-7xl mx-auto flex flex-row items-start gap-5 px-4 pt-12 h-full">
         <div className="flex flex-col justify-center items-center mt-5">
           <motion.div
             animate={{
@@ -26,7 +26,7 @@ const Hero = () => {
             }}
             className="w-1 sm:h-80 h-40 bg-gradient-to-b from-[#915EFF] to-transparent"
           />
-        </div>
+  </div>
 
         <motion.div
           initial={{ opacity: 0, x: -50 }}

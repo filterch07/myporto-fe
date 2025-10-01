@@ -29,7 +29,7 @@ const Work = () => {
   ];
 
   return (
-    <section id="work" className="relative min-h-screen py-20 bg-gradient-to-b from-primary via-[#0a0a0a] to-primary overflow-hidden">
+  <section id="work" className="relative min-h-screen py-20 bg-gradient-to-b from-primary via-[#0a0a0a] to-primary overflow-hidden scroll-mt-[80px]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#915EFF]/10 via-transparent to-transparent opacity-50"></div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}

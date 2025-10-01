@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const About = () => {
   return (
-    <section id="about" className="min-h-screen flex items-center bg-gradient-to-b from-[#0a0a0a] to-[#050816]">
+  <section id="about" className="min-h-screen flex items-center bg-gradient-to-b from-[#0a0a0a] to-[#050816] scroll-mt-[80px]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

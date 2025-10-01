@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-scroll';
 
 const Navbar = () => {
   const [active, setActive] = useState('');
   const [toggle, setToggle] = useState(false);
+  const [debug, setDebug] = useState(true);
+  const [debugInfo, setDebugInfo] = useState({ lastClicked: null, top: null, navHeight: null });
 
   const navLinks = [
     { id: 'about', title: 'About' },
@@ -12,15 +13,48 @@ const Navbar = () => {
     { id: 'contact', title: 'Contact' },
   ];
 
+  const scrollToSection = (id) => {
+    console.debug('[Navbar] scrollToSection called for:', id);
+    const el = document.getElementById(id);
+    if (!el) {
+      console.warn(`[Navbar] No element found with id=${id}`);
+      setDebugInfo({ lastClicked: id, top: null, navHeight: null });
+      return;
+    }
+    try {
+      // Try scrollIntoView first — this will work with nested/scrollable containers
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      console.debug('[Navbar] Used scrollIntoView for', id);
+    } catch (e) {
+      console.debug('[Navbar] scrollIntoView failed, falling back to window.scrollTo', e);
+      const nav = document.querySelector('nav');
+      const navHeight = nav ? nav.offsetHeight : 80;
+      const top = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+    // Also always try an offset-aware window scroll to account for fixed header
+    const nav = document.querySelector('nav');
+    const navHeight = nav ? nav.offsetHeight : 80;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
+    setDebugInfo({ lastClicked: id, top, navHeight });
+    window.setTimeout(() => {
+      window.scrollTo({ top, behavior: 'smooth' });
+      console.debug('[Navbar] window.scrollTo applied for', id, 'top=', top);
+    }, 50);
+  };
+
   return (
     <nav className="fixed w-full flex items-center py-5 top-0 z-20 nav-gradient">
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto px-4">
-        <Link to="hero" smooth={true} duration={500}>
-          <h1 className="text-white text-[18px] font-bold cursor-pointer flex">
-            Jhony Samosir&nbsp;
-            <span className="sm:block hidden">| Portfolio</span>
-          </h1>
-        </Link>
+        <button
+          type="button"
+          onClick={() => { setActive(''); scrollToSection('hero'); }}
+          onKeyDown={(e) => { if (e.key === 'Enter') { setActive(''); scrollToSection('hero'); } }}
+          className="text-white text-[18px] font-bold cursor-pointer flex bg-transparent border-none p-0"
+          aria-label="Go to top"
+        >
+          My Portfolio
+        </button>
 
         <ul className="list-none hidden sm:flex flex-row gap-10">
           {navLinks.map((link) => (
@@ -29,11 +63,15 @@ const Navbar = () => {
               className={`${
                 active === link.title ? 'text-white' : 'text-secondary'
               } hover:text-white text-[18px] font-medium cursor-pointer`}
-              onClick={() => setActive(link.title)}
             >
-              <Link to={link.id} smooth={true} duration={500}>
+              <button
+                type="button"
+                onClick={() => { setActive(link.title); scrollToSection(link.id); }}
+                onKeyDown={(e) => { if (e.key === 'Enter') { setActive(link.title); scrollToSection(link.id); } }}
+                className="inline-block text-inherit bg-transparent border-none p-0 cursor-pointer"
+              >
                 {link.title}
-              </Link>
+              </button>
             </li>
           ))}
         </ul>
@@ -64,19 +102,36 @@ const Navbar = () => {
                     active === link.title ? 'text-white' : 'text-secondary'
                   } font-poppins font-medium cursor-pointer text-[16px]`}
                   onClick={() => {
-                    setToggle(!toggle);
+                    setToggle(false);
                     setActive(link.title);
+                    // small timeout to allow menu close animation then scroll
+                    setTimeout(() => scrollToSection(link.id), 50);
                   }}
                 >
-                  <Link to={link.id} smooth={true} duration={500}>
-                    {link.title}
-                  </Link>
+                  <span className="inline-block">{link.title}</span>
                 </li>
               ))}
             </ul>
           </motion.div>
         </div>
       </div>
+      {/* Debug overlay - temporary */}
+      {debug && (
+        <div className="fixed right-4 bottom-4 z-50 bg-black/60 text-white p-3 rounded-lg text-sm w-64">
+          <div className="flex justify-between items-center mb-2">
+            <strong>Navbar Debug</strong>
+            <button
+              className="text-xs underline"
+              onClick={() => setDebug(false)}
+            >
+              hide
+            </button>
+          </div>
+          <div>Last: <span className="font-mono">{debugInfo.lastClicked ?? '—'}</span></div>
+          <div>Top: <span className="font-mono">{debugInfo.top ?? '—'}</span></div>
+          <div>Nav H: <span className="font-mono">{debugInfo.navHeight ?? '—'}</span></div>
+        </div>
+      )}
     </nav>
   );
 };

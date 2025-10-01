@@ -42,15 +42,13 @@ function App() {
   }
 
   return (
-    <main className="relative z-0 bg-primary min-h-screen w-full">
-      <div className="absolute inset-0 bg-hero-pattern bg-cover bg-no-repeat bg-center">
-        <div className="w-full">
-          <Navbar />
-          <Hero />
-          <About />
-          <Work />
-          <Contact />
-        </div>
+  <main className="relative z-0 bg-primary w-full bg-hero-pattern bg-cover bg-no-repeat bg-center pt-[80px]">
+      <div className="w-full">
+        <Navbar />
+        <Hero />
+        <About />
+        <Work />
+        <Contact />
       </div>
     </main>
   );

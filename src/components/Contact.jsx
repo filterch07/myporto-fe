@@ -26,7 +26,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen flex items-center relative bg-gradient-to-b from-primary via-[#0a0a0a] to-primary overflow-hidden">
+  <section id="contact" className="min-h-screen flex items-center relative bg-gradient-to-b from-primary via-[#0a0a0a] to-primary overflow-hidden scroll-mt-[80px]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_var(--tw-gradient-stops))] from-[#915EFF]/20 via-transparent to-transparent opacity-50"></div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
