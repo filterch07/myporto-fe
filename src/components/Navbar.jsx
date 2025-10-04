@@ -27,7 +27,7 @@ const Navbar = () => {
           type="button"
           onClick={() => { setActive(''); scrollToSection('hero'); }}
           onKeyDown={(e) => { if (e.key === 'Enter') { setActive(''); scrollToSection('hero'); } }}
-          className="text-white text-[18px] font-bold cursor-pointer flex bg-transparent border-none p-0"
+          className="text-white text-[18px] font-bold cursor-pointer flex bg-transparent border-none p-0 outline-none focus:outline-none"
           aria-label="Go to top"
         >
           My Portfolio
@@ -45,7 +45,7 @@ const Navbar = () => {
                 type="button"
                 onClick={() => { setActive(link.title); scrollToSection(link.id); }}
                 onKeyDown={(e) => { if (e.key === 'Enter') { setActive(link.title); scrollToSection(link.id); } }}
-                className="inline-block text-inherit bg-transparent border-none p-0 cursor-pointer"
+                className="inline-block text-inherit bg-transparent border-none p-0 cursor-pointer outline-none focus:outline-none"
               >
                 {link.title}
               </button>

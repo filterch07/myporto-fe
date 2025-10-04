@@ -6,26 +6,47 @@ const Work = () => {
 
   const projects = [
     {
-      title: "Project One",
-      description: "A web application built with React and modern technologies.",
-      tags: ["React", "TailwindCSS", "Node.js"],
+      title: "Support PMO Applications",
+      description: "A web application built with ASP.NET. My role focused on end-user support, resolving tickets, and problem solving to improve application stability.",
+      tags: ["ASP.NET", "JQuery", "SQL Server"],
       image: "path_to_image",
       link: "#"
     },
     {
-      title: "Project Two",
-      description: "An e-commerce platform with full payment integration.",
-      tags: ["React", "Redux", "MongoDB"],
+      title: "NewERBAS",
+      description: "A web application where I developed and maintained RESTful APIs for several business modules using Spring and PostgreSQL.",
+      tags: ["Springboot", "VueJS", "PostgreSQL"],
       image: "path_to_image",
       link: "#"
     },
     {
-      title: "Project Three",
-      description: "A real-time chat application with websockets.",
-      tags: ["Socket.io", "Express", "React"],
-      image: "path_to_image",
+      title: "CAPEX Dashboard",
+      description: "A web application for managing and visualizing capital expenditure data. My role involved developing backend services using .NET Core.",
+      tags: [".NET Core", "React", "SQL Server"],
+      image: "",
       link: "#"
     },
+    // {
+    //   title: "",
+    //   description: "",
+    //   tags: [""],
+    //   image: "",
+    //   link: "#"
+    // },
+    // {
+    //   title: "",
+    //   description: "",
+    //   tags: [""],
+    //   image: "",
+    //   link: "#"
+    // },
+    // {
+    //   title: "",
+    //   description: "",
+    //   tags: [""],
+    //   image: "",
+    //   link: "#"
+    // },
   ];
 
   return (
